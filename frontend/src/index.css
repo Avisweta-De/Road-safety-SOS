@@ -65,7 +65,7 @@ body {
 }
 
 /* ===== Leaflet Overrides ===== */
-.leaflet-container { background: #0F0F22 !important; border-radius: 20px; }
+.leaflet-container { background: #E8E0D8 !important; border-radius: 20px; }
 .leaflet-control-zoom a {
   background: rgba(26,26,46,0.9) !important; color: #E2E8F0 !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
