@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: roadsos
+    runtime: python
+    plan: free
+    buildCommand: |
+      pip install -r backend/requirements.txt
+      cd frontend && npm install && npm run build
+      cd ../backend && python train_model.py
+    startCommand: cd backend && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONIOENCODING
+        value: utf-8
+      - key: GEMINI_API_KEY
+        sync: false
+    autoDeploy: true

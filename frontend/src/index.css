@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Global ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0A0A1A;
+  color: #E2E8F0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+#root { min-height: 100dvh; display: flex; flex-direction: column; }
+
+/* ===== Ambient Background ===== */
+.ambient-bg {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 10%, rgba(255,51,51,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 80% 80%, rgba(59,130,246,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 50% 50%, rgba(139,92,246,0.03) 0%, transparent 70%),
+    #0A0A1A;
+}
+
+/* ===== Subtle Grid Pattern ===== */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 999px; }
+
+/* ===== Glass Card ===== */
+.glass {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.glass:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+}
+.glass-bright {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+/* ===== Leaflet Overrides ===== */
+.leaflet-container { background: #0F0F22 !important; border-radius: 20px; }
+.leaflet-control-zoom a {
+  background: rgba(26,26,46,0.9) !important; color: #E2E8F0 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(8px);
+}
+.leaflet-control-zoom a:hover { background: rgba(40,40,60,0.9) !important; }
+.leaflet-popup-content-wrapper {
+  background: rgba(26,26,46,0.95) !important; color: #E2E8F0 !important;
+  border-radius: 14px !important; border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4) !important;
+  backdrop-filter: blur(16px);
+}
+.leaflet-popup-tip { background: rgba(26,26,46,0.95) !important; }
+.leaflet-popup-close-button { color: rgba(255,255,255,0.4) !important; }
+
+/* ===== User Marker — Blue Pulse ===== */
+.user-marker {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #3B82F6; border: 3px solid rgba(255,255,255,0.9);
+  box-shadow: 0 0 0 0 rgba(59,130,246,0.5), 0 0 12px rgba(59,130,246,0.3);
+  animation: markerPulse 2s infinite;
+}
+@keyframes markerPulse {
+  0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5), 0 0 12px rgba(59,130,246,0.3); }
+  70% { box-shadow: 0 0 0 16px rgba(59,130,246,0), 0 0 12px rgba(59,130,246,0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0), 0 0 12px rgba(59,130,246,0.3); }
+}
+
+/* ===== SOS Button ===== */
+.btn-sos {
+  position: relative; overflow: hidden;
+  transition: all 0.2s ease;
+  min-height: 56px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.btn-sos::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+  pointer-events: none;
+}
+.btn-sos::after {
+  content: ''; position: absolute; inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 40%);
+  pointer-events: none; z-index: 0;
+}
+.btn-sos:active { transform: scale(0.96); }
+.btn-sos > * { position: relative; z-index: 1; }
+
+/* ===== Neon Glow Utilities ===== */
+.glow-red { box-shadow: 0 0 20px rgba(255,51,51,0.2), 0 4px 16px rgba(255,51,51,0.15); }
+.glow-blue { box-shadow: 0 0 20px rgba(59,130,246,0.2), 0 4px 16px rgba(59,130,246,0.15); }
+.glow-amber { box-shadow: 0 0 20px rgba(245,158,11,0.2), 0 4px 16px rgba(245,158,11,0.15); }
+.glow-green { box-shadow: 0 0 20px rgba(16,185,129,0.2), 0 4px 16px rgba(16,185,129,0.15); }
+.glow-purple { box-shadow: 0 0 20px rgba(139,92,246,0.2), 0 4px 16px rgba(139,92,246,0.15); }
+
+/* ===== Chat Bubbles ===== */
+.chat-user {
+  background: linear-gradient(135deg, #FF3333, #C40D0D);
+  color: #fff; border-radius: 20px 20px 4px 20px;
+  box-shadow: 0 4px 16px rgba(255,51,51,0.15);
+}
+.chat-ai {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #CBD5E1; border-radius: 20px 20px 20px 4px;
+}
+
+/* ===== Typing Dots ===== */
+.typing-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); animation: typing 1.4s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: .2s; }
+.typing-dot:nth-child(3) { animation-delay: .4s; }
+
+/* ===== Bottom Nav ===== */
+.nav-tab { transition: all 0.25s ease; }
+.nav-tab.active { color: #FF3333; }
+.nav-tab.active .nav-pill {
+  background: rgba(255,51,51,0.1);
+  border-radius: 14px; padding: 6px 18px;
+  box-shadow: 0 0 12px rgba(255,51,51,0.08);
+}
+
+/* ===== Severity Badges ===== */
+.badge-critical { background: rgba(255,51,51,0.12); color: #FF6464; border: 1px solid rgba(255,51,51,0.2); }
+.badge-moderate { background: rgba(245,158,11,0.12); color: #FBBF24; border: 1px solid rgba(245,158,11,0.2); }
+.badge-low { background: rgba(16,185,129,0.12); color: #34D399; border: 1px solid rgba(16,185,129,0.2); }
+
+/* ===== Intent Tag ===== */
+.intent-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  backdrop-filter: blur(8px);
+}
+
+/* ===== Form Inputs ===== */
+.input-field {
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 14px; color: #E2E8F0;
+  font-size: 15px; transition: all 0.2s ease;
+}
+.input-field:focus {
+  outline: none;
+  border-color: rgba(255,51,51,0.5);
+  box-shadow: 0 0 0 3px rgba(255,51,51,0.08), 0 0 16px rgba(255,51,51,0.06);
+  background: rgba(255,255,255,0.06);
+}
+.input-field::placeholder { color: rgba(255,255,255,0.2); }
+select.input-field {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+}
+select.input-field option { background: #1A1A2E; color: #E2E8F0; }
+
+/* ===== Demo Badge ===== */
+.demo-badge {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: #000; font-weight: 800; font-size: 9px;
+  padding: 2px 8px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  box-shadow: 0 0 10px rgba(245,158,11,0.2);
+}
+
+/* ===== Page Transitions ===== */
+.page-enter { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* ===== Gradient Text ===== */
+.text-gradient {
+  background: linear-gradient(135deg, #FF3333, #FF6464, #FF3333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Shimmer Loading ===== */
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ===== Divider ===== */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+}
+
+/* ===== Safe Area ===== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 72px); }
+}
