@@ -46,7 +46,8 @@ export default function App() {
       case 'home':
         return (
           <div className="space-y-5 page-enter">
-            <MapView location={geo.location} address={geo.address} loading={geo.loading} services={services} demoMode={demoMode} />
+            <MapView location={geo.location} address={geo.address} loading={geo.loading} services={services} demoMode={demoMode}
+              searchLocation={geo.searchLocation} setManualLocation={geo.setManualLocation} requestLocation={geo.requestLocation} />
             <EmergencyButtons />
             <div className="divider" />
             <ShareLocation location={geo.location} address={geo.address} />
