@@ -14,7 +14,7 @@ export default function useGeolocation() {
     try {
       const res = await fetch(
         `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
-        { headers: { 'Accept-Language': 'en' } }
+        { headers: { 'Accept-Language': 'en', 'User-Agent': 'RoadSoS/2.0 (road-safety-app)' } }
       );
       const data = await res.json();
       if (data.display_name) {

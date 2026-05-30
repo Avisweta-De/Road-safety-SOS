@@ -19,12 +19,13 @@ export default function NearbyServices({ location, demoMode }) {
     if (!location) return;
     const fetchServices = async () => {
       setLoading(true);
-      if (!demoMode) {
-        try {
-          const res = await fetch(`/services?lat=${location.lat}&lng=${location.lng}`);
-          if (res.ok) { setServices(await res.json()); setLoading(false); return; }
-        } catch { /* fall through */ }
-      }
+      // Always try backend first (works in both demo and live mode on deployment)
+      try {
+        const res = await fetch(`/services?lat=${location.lat}&lng=${location.lng}`);
+        if (res.ok) { setServices(await res.json()); setLoading(false); return; }
+      } catch { /* backend unreachable — use client-side mock */ }
+
+      // Fallback: client-side Haversine calculation with Lucknow mock data
       const computed = {};
       Object.entries(LUCKNOW_SERVICES).forEach(([cat, list]) => {
         const withDist = list.map(svc => ({ ...svc, distance_km: haversine(location.lat, location.lng, svc.lat, svc.lng) }));
