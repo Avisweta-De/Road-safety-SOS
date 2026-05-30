@@ -111,6 +111,13 @@ Works fully without API keys:
 - **Features:** 16 (vehicles, casualties, weather, road type, etc.)
 - **Target:** Severity (Fatal → CRITICAL, Serious → MODERATE, Minor → LOW)
 
+## 👥 Contributors
+
+- **Samir Thakur**
+- **Urmi Kanrar**
+- **Avisweta De**
+
 ## 📄 License
 
 MIT
+
