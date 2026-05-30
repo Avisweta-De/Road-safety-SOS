@@ -15,7 +15,7 @@ export default function MapView({ location, address, loading, services, demoMode
         .setView([location.lat, location.lng], 14);
 
       // Dark map tiles
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
 
       const userIcon = L.divIcon({ className: 'user-marker', iconSize: [18, 18], iconAnchor: [9, 9] });
       L.marker([location.lat, location.lng], { icon: userIcon }).addTo(map)
